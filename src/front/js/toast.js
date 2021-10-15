@@ -8,15 +8,21 @@ class Toast {
         this.name = name;
         this.content = content;
         this.classCss = classCss;
+        this.rand = new Date().getTime();
     }
 
     show() 
     {
         this.classCss;
-        $('.toasts').append(
-            '<div class=' + this.name + '><span>' + this.content + '</span></div>');
-            $('.' + this.name).addClass(this.classCss);
-        setTimeout(() => $('.' + this.name).remove(), 3000);
+        $('.toasts__container').append(
+            '<div class=' + this.rand + '><span>' + this.content + '</span></div>');
+            $('.' + this.rand).addClass(this.classCss);
+            $('.' + this.rand).addClass('toast');
     }
+    
 
+    hide()
+    {
+        setTimeout(() => $('.' + this.rand).remove(), 3000);
+    }
 }

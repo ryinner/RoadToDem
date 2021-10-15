@@ -1,5 +1,20 @@
-.toasts {
+.toasts__container {
     position: fixed;
-    float: right;
-    width: 100%;
+    right: 0;
+    bottom: 0;
+}
+
+.toast {
+    margin: 6px 0;
+    padding: 12px 18px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.error {
+    background: #a40707;
+}
+
+.success {
+    background: #50c878;
 }

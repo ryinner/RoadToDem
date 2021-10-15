@@ -34,4 +34,8 @@
     </div>
 </header>
 
+<div class="toasts__container">
+
+</div>
+
 <div class="container">

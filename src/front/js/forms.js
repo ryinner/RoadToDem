@@ -26,6 +26,7 @@ $('#reg').on('click',function (event){
         $('#registration .form-container input').addClass('invalid');
         let toast = new Toast('notAllInputValid','Заполните поля','error');
         toast.show();
+        toast.hide();
         valide = false;
     }
 
@@ -35,6 +36,7 @@ $('#reg').on('click',function (event){
     if (validator.validate() == false) {
         toast = new Toast('nameValid','Введите только руссие буквы, пробелы, дефисы','error');
         toast.show();
+        toast.hide();
         valide = false;
     }
 
@@ -43,6 +45,7 @@ $('#reg').on('click',function (event){
     if (validator.validate() == false) {
         toast = new Toast('loginValid','Введите только английские буквы и точки','error');
         toast.show();
+        toast.hide();
         valide = false;
     }
 
@@ -51,12 +54,14 @@ $('#reg').on('click',function (event){
     if (validator.validate() == false) {
         toast = new Toast('emailValid','Введите почту','error');
         toast.show();
+        toast.hide();
         valide = false;
     }
 
     if (password.val() !== repassword.val()) {
         toast = new Toast('passwordValid','Пароли не совпадают','error');
         toast.show();
+        toast.hide();
         repassword.addClass('invalid');
         valide = false;
     }
