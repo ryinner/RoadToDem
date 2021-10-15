@@ -1,0 +1,8 @@
+{
+    "name": "ryin/masterok",
+    "autoload": {
+        "psr-4": {
+            "MasterOk\\": "src/"
+        }
+    }
+}
