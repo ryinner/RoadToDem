@@ -37,7 +37,6 @@ $('#loginButton').on('click',function(){
         valide = false;
     }
 
-
      // Проверка всех булевых значений, если все хорошо Ajax запускается
 
      if (valide == true) {
