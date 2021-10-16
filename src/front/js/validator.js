@@ -3,7 +3,7 @@
 
 class Validator
 {
-    constructor(validPattern,validValue,validObject = null)
+    constructor(validObject, validValue, validPattern = null)
     {
         this.validPattern = validPattern
         this.validValue = validValue;
@@ -19,5 +19,13 @@ class Validator
         }
         
         return result;
+    }
+
+    isEmpty()
+    {
+        if (this.validValue == '') {
+            this.validObject.addClass('invalid');
+            return true;
+        }
     }
 }

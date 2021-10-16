@@ -33,13 +33,13 @@ class UsersController
         if ($query == array()) {
             $password = password_hash($password,PASSWORD_DEFAULT);
             $db->insert('users',['name','email','password','login'],[$name,$email,$password,$login]);
-            return json_encode([
-                'success' => "true",
+            echo json_encode([
+                'success' => "success",
                 'message' => "Вы зарегистрировались"
             ]);
         } else {
-            return json_encode([
-                'success' => "false",
+            echo json_encode([
+                'success' => "error",
                 'message' => "Такой аккаунт уже есть"
             ]);
         }
