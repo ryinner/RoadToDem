@@ -27,7 +27,8 @@
                     echo '<li><a href="#registr" class="white-text">Регистрация</a></li>
                           <li><a href="#login " class="white-text">Авторизация</a></li>';
                 } else {
-                    echo '';
+                    echo '<li><a href="/" class="white-text">'.$_SESSION['login'].'</a></li>
+                          <li><a href="/logout.php" class="white-text">Выйти</a></li>';
                 }
                 ?>
             </ul>

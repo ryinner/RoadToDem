@@ -17,15 +17,17 @@
             <input type="password" class="input" name="pass" placeholder="Введите пароль" required>
             <input type="password" class="input" name="repass" placeholder="Повторите пароль" required>
             <input type="checkbox" class="input" name="check" required><label for="check">Подтвердите согласие на обработку</label>
-            <button id="reg">Зарегистрироваться</button>
+            <button id="registrationButton">Зарегистрироваться</button>
         </div>
     </div>
     <div id="login">
         <div class="form-container">
-            <input type="text" name="login" placeholder="Введите логин" required>
-            <input type="password" name="pass" placeholder="Введите пароль" required>
-            <button>Авторизироваться</button>
+            <input type="text" name="login__login" class="input" placeholder="Введите логин" required>
+            <input type="password" name="pass__login" class="input" placeholder="Введите пароль" required>
+            <button id="loginButton">Авторизироваться</button>
         </div>
     </div>
 </div>
+<script src="/src/front/js/formRegistration.js"></script>
+<script src="/src/front/js/formLogin.js"></script>
 <!--  Блок форм регистрации и авторизации конец  -->

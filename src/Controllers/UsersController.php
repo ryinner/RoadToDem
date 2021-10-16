@@ -73,13 +73,13 @@ class UsersController
 
             if (password_verify($password,$hash)) {
                 $_SESSION['login'] = $login;
-                return json_encode(['success' => 'true']);
+                echo json_encode(['success' => 'true']);
             } else {
-                return json_encode(['success' => 'false']);
+                echo json_encode(['success' => 'error']);
             }
 
         } else {
-            return json_encode(['success' => 'false']);
+            echo json_encode(['success' => 'error']);
         }
     }
 

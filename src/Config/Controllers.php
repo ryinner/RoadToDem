@@ -7,5 +7,5 @@ use MasterOk\Controllers\UsersController;
 
 return [
     'view'  =>  ViewController::class,
-    'login' =>  UsersController::class
+    'users' =>  UsersController::class
 ];

@@ -1,4 +1,4 @@
-$('#reg').on('click',function (event){
+$('#registrationButton').on('click',function (event){
     
     // Обновление классов
 
@@ -12,12 +12,12 @@ $('#reg').on('click',function (event){
     let validValue;
     // Inputs
 
-    let name = $('.input[name=name]');
-    let login = $('.input[name=login]');
-    let email = $('.input[name=email]');
-    let password = $('.input[name=pass]');
+    let name       = $('.input[name=name]');
+    let login      = $('.input[name=login]');
+    let email      = $('.input[name=email]');
+    let password   = $('.input[name=pass]');
     let repassword = $('.input[name=repass]');
-    let check = $('.input[name=check]');
+    let check      = $('.input[name=check]');
 
     // Вся валидация на условиях, если не соблюдается, то функция возврщает false, если проходят все то true
 
@@ -128,6 +128,9 @@ $('#reg').on('click',function (event){
     function success(data) {
         data = JSON.parse(data);
         console.log(data);
+        if (data.success == "error") {
+            login.addClass('invalid');
+        }
         toast = new Toast('serverRegistration',data.message,data.success);
         toast.show();
         toast.hide();

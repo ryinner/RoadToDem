@@ -6,4 +6,6 @@ $app = new \MasterOk\App();
 
 $app->run();
 
-$app->users->registration();
+$app->users->logout();
+
+header('Location: /');
