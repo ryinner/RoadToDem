@@ -2,6 +2,10 @@
 
 namespace MasterOk\Controllers;
 
+/**
+ * Контроллер для всех представлений в приложении
+ */
+
 class ViewController
 {
     public $dir = __DIR__.'/../views';
@@ -14,8 +18,13 @@ class ViewController
         return $this->dir;
     }
 
-
-    public function init($content)
+    /**
+     * Функция инициализации внешнего вида из основно слоя и переменной для контента страницы
+     *
+     * @param string $content
+     * @return void
+     */
+    public function init(string $content)
     {
         $dir = $this->dir;
         require_once $dir.'/layout/header.php';

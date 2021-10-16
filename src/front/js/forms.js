@@ -66,7 +66,7 @@ $('#reg').on('click',function (event){
         valide = false;
     }
     
-    // Проверка всех булевых значений, если все хорошо AjaxWork
+    // Проверка всех булевых значений, если все хорошо Ajax запускается
 
     if (valide == true) {
         $.ajax({

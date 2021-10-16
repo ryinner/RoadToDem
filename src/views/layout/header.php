@@ -12,6 +12,7 @@
 </head>
 <body>
 
+<!--  Шапка старт  -->
 <header class="green">
     <div class="header">
         <div class="logo">
@@ -33,9 +34,13 @@
         </nav>
     </div>
 </header>
+<!--  Шапка конец -->
 
+<!--  Toast хранилище старт  -->
 <div class="toasts__container">
 
 </div>
+<!--  Toast хранилище конец  -->
 
+<!--  Контейнер страницы старт  -->
 <div class="container">

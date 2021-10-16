@@ -5,10 +5,16 @@ namespace MasterOk\Controllers;
 
 use PDO;
 
+/**
+ * Класс работы с Базой Данных при помощи PDO
+ */
 class DataBaseController
 {
     public $pdo;
 
+    /**
+     * Конструктор класса
+     */
     public function __construct()
     {
         $dbInfo = require 'src/Config/DataBaseInfo.php';

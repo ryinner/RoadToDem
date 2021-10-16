@@ -1,5 +1,7 @@
 <?php
 
+// Возврат всех данных Базы данных
+
 return [
     'adapter'   =>  'mysql',
     'host'      =>  'localhost',

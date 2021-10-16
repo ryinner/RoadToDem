@@ -4,7 +4,7 @@
 namespace MasterOk\Controllers;
 
 
-class LoginController
+class UsersController
 {
     public function registration()
     {
@@ -23,7 +23,6 @@ class LoginController
         $query->execute(['login' => $login]);
         $query = $query->fetchAll();
         if ($query == array()) {
-//            $db = new DataBaseController();
             $db->insert('users',['name','email','password','login'],[$name,$email,$password,$login]);
             return [
                 'success' => "true",
