@@ -13,7 +13,7 @@ class DataBaseController
     public $pdo;
 
     /**
-     * Конструктор класса
+     * Конструктор класса, который создает PDO-объект
      */
     public function __construct()
     {
@@ -28,7 +28,14 @@ class DataBaseController
         $this->pdo = new PDO($dsn,$dbInfo['user'],$dbInfo['password'], $opt);
     }
 
-    public function select (string $table, string $where = null)
+
+    /**
+     * Функция для выбора данных из бд без условий
+     *
+     * @param string $table
+     * @return array $query as Все строки из таблицы
+     */
+    public function select (string $table)
     {
         $sql = "SELECT * FROM $table";
         $pdo = $this->pdo;
@@ -38,6 +45,14 @@ class DataBaseController
         return $query;
     }
 
+    /**
+     * Функция для вставки в базу данных
+     *
+     * @param string $table
+     * @param array $column
+     * @param array $data
+     * @return void
+     */
     public function insert (string $table,array $column ,array $data)
     {
         $pattern_array = [];
@@ -45,54 +60,52 @@ class DataBaseController
         $pdo = $this->pdo;
         foreach ($data as $item) {
             if ($item !== null) {
-                $item = '":'.$item.'"';
+                $item = '?';
                 array_push($pattern_array, $item);
             }
         }
 
         foreach($data as $item) {
             if ($item !== null) {
-                $item = [$item => $item];
                 array_push($data_end,$item);
             }
         }
 
         $pattern = implode(",",$pattern_array);
         $column = implode(",",$column);
-
         $sql = "INSERT INTO $table ($column) values ($pattern)";
         $query = $pdo->prepare($sql);
         $query->execute($data_end);
 
     }
+    // Переписать как insert
+    // public function update (string $table,array $columns,array $data, int $id)
+    // {
+    //     $pdo = $this->pdo;
+    //     $pattern_array = [];
 
-    public function update (string $table,array $columns,array $data, int $id)
-    {
-        $pdo = $this->pdo;
-        $pattern_array = [];
+    //     foreach ($data as $item) {
+    //         $item = ':'.$item;
+    //         array_push($pattern_array, $item);
+    //     }
 
-        foreach ($data as $item) {
-            $item = ':'.$item;
-            array_push($pattern_array, $item);
-        }
+    //     for ($i=0;$i<count($data);$i++) {
+    //         $pattern_array[$i] = $columns[$i].' = '.$pattern_array[$i] ;
+    //     }
 
-        for ($i=0;$i<count($data);$i++) {
-            $pattern_array[$i] = $columns[$i].' = '.$pattern_array[$i] ;
-        }
+    //     for($i=0;$i<count($data);$i++) {
+    //         $data = [(string)$data[$i] => $data[$i]];
+    //     }
 
-        for($i=0;$i<count($data);$i++) {
-            $data = [(string)$data[$i] => $data[$i]];
-        }
+    //     array_push($data,['id'=>$id]);
 
-        array_push($data,['id'=>$id]);
+    //     $pattern = implode(",",$pattern_array);
 
-        $pattern = implode(",",$pattern_array);
+    //     $sql = "UPDATE $table SET $pattern WHERE id = :id";
 
-        $sql = "UPDATE $table SET $pattern WHERE id = :id";
-
-        $query = $pdo->prepare($sql);
-        $query->execute($data);
-    }
+    //     $query = $pdo->prepare($sql);
+    //     $query->execute($data);
+    // }
 
     public function delete (string $table, int $id)
     {
