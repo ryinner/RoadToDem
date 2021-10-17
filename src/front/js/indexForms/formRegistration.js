@@ -2,7 +2,7 @@ $('#registrationButton').on('click',function (event){
     
     // Обновление классов
 
-    $('.form-container input').removeClass('invalid')
+    $('.form-container input').removeClass('invalid');
 
     // Создание переменных для успеха валидации и Toast-messages
 

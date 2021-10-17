@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(empty($_SESSION['login']) or $_SESSION['login']=='admin') {
+if($_SESSION['login'] !== 'admin') {
     header('Location: /');
 }
 
@@ -11,4 +11,4 @@ $app = new \MasterOk\App();
 
 $app->run();
 
-$app->view->init('/profile/index.php');
+$app->view->init('/admin/index.php');

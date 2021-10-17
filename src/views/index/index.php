@@ -28,6 +28,6 @@
         </div>
     </div>
 </div>
-<script src="/src/front/js/formRegistration.js"></script>
-<script src="/src/front/js/formLogin.js"></script>
+<script src="/src/front/js/indexForms/formRegistration.js"></script>
+<script src="/src/front/js/indexForms/formLogin.js"></script>
 <!--  Блок форм регистрации и авторизации конец  -->
