@@ -2,12 +2,12 @@
 
 namespace MasterOk\Controllers;
 
-use MasterOk\Interfaces\DBCInterface;
+use MasterOk\Interfaces\ControllerBaseDataInterface;
 
 /**
  * Класс для всего, что связано с таблицей category
  */
-class CategoryController implements DBCInterface
+class CategoryController implements ControllerBaseDataInterface
 {
     protected $table = 'category';
 
