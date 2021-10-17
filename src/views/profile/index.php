@@ -6,10 +6,8 @@
     <form action="" method="post" enctype="multipart/form-data">
         <div class="form-container">
             <input type="text" name="adress" placeholder="Введите адрес помещения">
-            <input type="text" name="description" placeholder="Описание">
-            <select name="category" id="">
-
-            </select>
+            <textarea name="description" placeholder="Описание" cols="30" rows="3"></textarea>
+            <select name="category" id="category"></select>
             <input type="number" name="maxPrice" min="0" placeholder="Максимальная цена ">
             <input type="file">
             <button>Добавить заявку</button>
@@ -19,3 +17,5 @@
 <!--  Блок формы заявки конец  -->
 <hr>
 <h3>Вот и все наши с вами работы</h3>
+
+<script src="/src/front/js/category/formCategoryGet.js"></script>

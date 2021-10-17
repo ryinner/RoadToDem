@@ -2,7 +2,7 @@
     margin: 5px auto;
 }
 
-input {
+input, textarea {
     border: none;
     border-bottom: 2px solid #50c878;
     outline:none;
@@ -39,3 +39,10 @@ button:hover {
 .invalid {
     border-bottom: 2px solid #a40707;
 }
+
+select {
+    font-size: 1em;
+    border: none;
+    padding: 5px;
+}
+ 
