@@ -31,7 +31,7 @@ h1, h2, h3 {
 }
 
 h3 {
-    margin: 10px 0;
+    margin: 6px 0;
 }
 
 h1 {
@@ -40,6 +40,7 @@ h1 {
 
 h2 {
     font-size: 1.5em;
+    margin-bottom: 6px;
 }
 
 nav {
@@ -104,42 +105,4 @@ header {
     white-space: break-spaces;
     margin: 0 auto;
     height: 100%;
-}
-
-.form-container input {
-    margin: 5px auto;
-}
-
-input {
-    border: none;
-    border-bottom: 2px solid #50c878;
-    outline:none;
-    width: 250px;
-    font-size: 1em;
-}
-
-input[type = checkbox] {
-    width: 20px;
-}
-
-input:focus {
-    border-bottom: 2px solid #000;
-}
-
-button {
-    border: 1px solid #50c878;
-    padding: 5px;
-    background-color: #fff;
-    margin: 5px 0;
-    font-size: 1em;
-}
-
-button:hover {
-    border: 1px solid #fff;
-    background-color: #50c878;
-    color: #fff;
-}
-
-.invalid {
-    border-bottom: 2px solid #a40707;
 }

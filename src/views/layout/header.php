@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/src/front/css/style.css">
+    <link rel="stylesheet" href="/src/front/css/inputs.css">
     <link rel="stylesheet" href="/src/front/css/toast.css">
     <script src="/src/front/js/jquery-3.4.1.min.js"></script>
     <title>МастерОк</title>
@@ -16,7 +17,7 @@
 <header class="green">
     <div class="header">
         <div class="logo">
-            <img src="/src/front/logo/logo_ok.png" alt="Logo" class="img">
+            <a href="/"><img src="/src/front/logo/logo_ok.png" alt="Logo" class="img"></a>
         </div>
         <nav>
             <ul>
