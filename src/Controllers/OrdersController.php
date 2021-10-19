@@ -16,6 +16,15 @@ class OrdersController implements ControllerDataInterface
         // Новую штуку сразу с учетом разных статусов и тому подобного рисовать через js в цикле, в зависимости от статуса
     }
 
+    /**
+     * Функция для добавления новых заявок с всей валидацией.
+     * Проверка на расширения и размер файла через внутрение
+     * функции, если все хорошо то выполняется абстрактный метод
+     * из контроллера баз данных.
+     * Пути и дата парсятся.
+     * 
+     * @return void
+     */
     public function add()
     {   
         $login       = $_SESSION['login'];
@@ -33,6 +42,7 @@ class OrdersController implements ControllerDataInterface
         $adress      = $post['adress'];
         $description = $post['description'];
         $maxPrice    = $post['maxPrice'];
+        $data        = date('d-m-y');
         $category    = $post['category'];
         $tmp         = $files['img']['tmp_name'];
         $img         = $files['img']['name'];
@@ -44,7 +54,21 @@ class OrdersController implements ControllerDataInterface
 
         if ($imgSize < $allowedSize) {
             if (in_array($imgExtension, $allowedExtension)) {
-                $db->insert($this->table,[],[]);
+                $path = 'src/front/img/';
+                $rand = rand();
+                $imgEndPath = $path.$rand.$img;
+                if (move_uploaded_file($tmp, $imgEndPath)) {
+                    $db->insert($this->table,['adress', 'description', 'max_price', 'data', 'photo_user', 'category_id', 'user_id'],[$adress,$description,$maxPrice,$data,$imgEndPath,$category,$id]);
+                    echo json_encode([
+                        'success' => "success",
+                        'message' => "Вы добавили заявку"
+                    ]);
+                } else {
+                    echo json_encode([
+                        'success' => "error",
+                        'message' => "Ошибка загрузки на сервер"
+                    ]);
+                }
             } else {
                 echo json_encode([
                     'success' => "error",
@@ -61,7 +85,12 @@ class OrdersController implements ControllerDataInterface
 
     public function delete()
     {
-        
+        $post = $_POST;
+        $db = new DataBaseController;
+
+        $id = $post['id'];
+
+        $db->delete($this->table,$id);
     }
 
     public function update()

@@ -14,6 +14,7 @@ $('#create').on('click',function(event) {
     let maxPrice = $('input[name=maxPrice]');
     let img = $('input[name=img]');
 
+    // Валидация
     validator = new Validator(adress,adress.val());
     if (validator.isEmpty() == true) {
         toast = new Toast('adressValid','Заполните адрес','error');
@@ -46,18 +47,26 @@ $('#create').on('click',function(event) {
         validate = false;
     }
 
-    let form = document.querySelector("#formOrderAdd");
-    let formData = new FormData(form);
-    formData.append('action','add');
-    $.ajax({
-        type: "post",
-        url: "/orders.php",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (data) {
-            data = JSON.parse(data);
-            console.log(data);
-        }
-    });
+    // Валидация пройдена, тогда ajax, с выводом сообщения
+    if (validate == true) {
+        let form = document.querySelector("#formOrderAdd");
+        let formData = new FormData(form);
+        formData.append('action','add');
+        $.ajax({
+            type: "post",
+            url: "/orders.php",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                data = JSON.parse(data);
+                if (data.success == "error") {
+                    img.addClass('invalid');
+                }
+                toast = new Toast('serverRegistration',data.message,data.success);
+                toast.show();
+                toast.hide();
+            }
+        });
+    }
 });
