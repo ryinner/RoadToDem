@@ -21,7 +21,7 @@ $('#create').on('click',function(event) {
         toast.hide();
         validate = false;
     }
-    
+
     validator = new Validator(descrption,descrption.val());
     if (validator.isEmpty() == true) {
         toast = new Toast('descrptionValid','Заполните описание','error');
@@ -56,7 +56,7 @@ $('#create').on('click',function(event) {
         processData: false,
         contentType: false,
         success: function (data) {
-            // data = JSON.parse(data);
+            data = JSON.parse(data);
             console.log(data);
         }
     });
