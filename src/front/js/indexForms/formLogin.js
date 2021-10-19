@@ -5,7 +5,7 @@ $('#loginButton').on('click',function(){
     let validator;
     let validValue;
     // Inputs
-    let login    = $('.input[name=login__login]')
+    let login    = $('.input[name=login__login]');
     let password = $('.input[name=pass__login]'); 
     // Валидаторы для логина и пароля
 

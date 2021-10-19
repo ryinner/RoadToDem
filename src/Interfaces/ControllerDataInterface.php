@@ -8,7 +8,7 @@ namespace MasterOk\Interfaces;
  * Обязятельно для всех контроллеров: метод получения,
  * создания, удаления.
  */
-interface ControllerBaseDataInterface
+interface ControllerDataInterface
 {
     public function get();
     public function delete();

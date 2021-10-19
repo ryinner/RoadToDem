@@ -2,12 +2,12 @@
 
 namespace MasterOk\Controllers;
 
-use MasterOk\Interfaces\ControllerBaseDataInterface;
+use MasterOk\Interfaces\ControllerDataInterface;
 
 /**
  * Класс для всего, что связано с таблицей category
  */
-class CategoryController implements ControllerBaseDataInterface
+class CategoryController implements ControllerDataInterface
 {
     protected $table = 'category';
 
