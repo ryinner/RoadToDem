@@ -2,7 +2,7 @@ $('#create').on('click',function(event) {
     event.preventDefault();
 
     $('.form-container input').removeClass('invalid');
-
+    $('.form-container textarea').removeClass('invalid');
     // Рабочие переменные
     let validate = true;
     let toast;

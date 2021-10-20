@@ -56,7 +56,7 @@ class OrdersController implements ControllerDataInterface
         $id = $userController->getId();
 
         $db = new DataBaseController;
-        $sql = "SELECT * FROM $this->table WHERE user_id = $id";
+        $sql = "SELECT * FROM $this->table o INNER JOIN category c ON o.category_id = c.id WHERE user_id = $id";
         
         $query = $db->pdo->query($sql);
         $query = $query->fetchAll();

@@ -15,7 +15,9 @@
 <!--  Блок формы заявки конец  -->
 <hr>
 <h3>Вот и все наши с вами работы</h3>
+<div class="row" id="orders">
 
+</div>
 <script src="/src/front/js/category/formCategoryGet.js"></script>
 <script src="/src/front/js/orders/formOrdersAdd.js"></script>
 <script src="/src/front/js/orders/formOrdersGet.js"></script>
