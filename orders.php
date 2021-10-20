@@ -16,4 +16,7 @@ switch ($_POST['action']) {
     case 'get':
         $app->orders->get();
         break;
+    case 'getForUser': 
+        $app->orders->getForUser();
+        break;
 }

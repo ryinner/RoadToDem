@@ -92,4 +92,24 @@ class UsersController
     {
         session_destroy();
     }
+
+    /**
+     * Функция для получени id пользователя через логин
+     *
+     * @return id
+     */
+    public function getId() 
+    {
+        $login       = $_SESSION['login'];
+
+        $sql = "SELECT id FROM users WHERE login = '$login'";
+        $db = new DataBaseController;
+        $query = $db->pdo->query($sql);
+        $query = $query->fetchALl();
+        foreach ($query as $item){
+            $id = $item['id'];
+        }
+
+        return $id;
+    }
 }

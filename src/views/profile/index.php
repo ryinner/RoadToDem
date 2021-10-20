@@ -18,3 +18,4 @@
 
 <script src="/src/front/js/category/formCategoryGet.js"></script>
 <script src="/src/front/js/orders/formOrdersAdd.js"></script>
+<script src="/src/front/js/orders/formOrdersGet.js"></script>

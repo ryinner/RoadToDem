@@ -11,9 +11,57 @@ class OrdersController implements ControllerDataInterface
 {
     protected $table = 'orders';
 
-    public function get()
+    /**
+     * Получение заявок и формирование трех массивов заявок по статусам.
+     * Если получает значение юзера, тогда ищет заявки конкретного пользователя.
+     * Все заявки отсортированы по значениям
+     * 
+     * @return sortOrders
+     */
+    public function get($user = null)
     {
-        // Новую штуку сразу с учетом разных статусов и тому подобного рисовать через js в цикле, в зависимости от статуса
+        $newOrders = [];
+        $workingOrders = [];
+        $readyOrders = [];
+
+        $db = new DataBaseController;
+        $sql = "SELECT * FROM $this->table";
+        $query = $db->pdo->query($sql);
+        $query = $query->fetchAll();
+
+        foreach ($query as $item) {
+            switch ($item['status']) {
+                case 'Новая':
+                    array_push($newOrders,$item);
+                    break;
+                
+                case 'Ремонтируется':
+                    array_push($workingOrders,$item);
+                    break;
+
+                case 'Отремонтировано';
+                    array_push($readyOrders,$item);
+                    break;
+            }
+        }
+
+        $orders = ['new'=>$newOrders,'working'=>$workingOrders,'ready'=> $readyOrders];
+        echo json_encode($orders);
+    }
+
+    public function getForUser()
+    {
+        $userController = new UsersController;
+        $db = new DataBaseController;
+        $id = $userController->getId();
+
+        $db = new DataBaseController;
+        $sql = "SELECT * FROM $this->table WHERE user_id = $id";
+        
+        $query = $db->pdo->query($sql);
+        $query = $query->fetchAll();
+
+        echo json_encode($query);
     }
 
     /**
@@ -27,16 +75,10 @@ class OrdersController implements ControllerDataInterface
      */
     public function add()
     {   
-        $login       = $_SESSION['login'];
+        $userController = new UsersController;
+        $id          = $userController->getId();
 
-        $sql = "SELECT id FROM users WHERE login = '$login'";
-        $db = new DataBaseController;
-        $query = $db->pdo->query($sql);
-        $query = $query->fetchALl();
-        foreach ($query as $item){
-            $id = $item['id'];
-        }
-
+        $db          = new DataBaseController;
         $post        = $_POST;
         $files       = $_FILES;
         $adress      = $post['adress'];
