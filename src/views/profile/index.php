@@ -18,6 +18,7 @@
 <div class="row" id="orders">
 
 </div>
+<script src="/src/front/js/orders/formOrdersGetForUser.js"></script>
 <script src="/src/front/js/category/formCategoryGet.js"></script>
 <script src="/src/front/js/orders/formOrdersAdd.js"></script>
-<script src="/src/front/js/orders/formOrdersGet.js"></script>
+<script src="/src/front/js/orders/formOrdersDelete.js"></script>

@@ -66,6 +66,7 @@ $('#create').on('click',function(event) {
                 toast = new Toast('serverRegistration',data.message,data.success);
                 toast.show();
                 toast.hide();
+                getOrders();
             }
         });
     }

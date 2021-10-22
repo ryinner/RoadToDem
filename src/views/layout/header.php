@@ -30,7 +30,7 @@
                           <li><a href="#login " class="white-text">Авторизация</a></li>';
                 } else {
                     if ($_SESSION['login'] == 'admin') {
-                        echo '<li><a href="/admin.php" class="white-text">'.$_SESSION['login'].'</a></li>';
+                        echo '<li><a href="/master.php" class="white-text">'.$_SESSION['login'].'</a></li>';
                     } else {
                         echo '<li><a href="/profile.php" class="white-text">'.$_SESSION['login'].'</a></li>';
                     }
