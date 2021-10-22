@@ -14,6 +14,8 @@ class DataBaseController
 
     /**
      * Конструктор класса, который создает PDO-объект
+     * 
+     * @return PDO
      */
     public function __construct()
     {
@@ -47,7 +49,9 @@ class DataBaseController
 
     /**
      * Функция для вставки в базу данных
-     *
+     * Парсятся паттерны и данные, после чего объеденяются и выполняется подготовленный запрос,
+     * который принимает и паттерны и данные.
+     * 
      * @param string $table
      * @param array $column
      * @param array $data
@@ -78,35 +82,47 @@ class DataBaseController
         $query->execute($data_end);
 
     }
-    // Переписать как insert
-    // public function update (string $table,array $columns,array $data, int $id)
-    // {
-    //     $pdo = $this->pdo;
-    //     $pattern_array = [];
 
-    //     foreach ($data as $item) {
-    //         $item = ':'.$item;
-    //         array_push($pattern_array, $item);
-    //     }
 
-    //     for ($i=0;$i<count($data);$i++) {
-    //         $pattern_array[$i] = $columns[$i].' = '.$pattern_array[$i] ;
-    //     }
+    /**
+     * Функция для обновления данных в какой-то абстрактной таблице.
+     * Тот же принцип парсинга как и в вставке.
+     *
+     * @param string $table
+     * @param array $columns
+     * @param array $data
+     * @param integer $id
+     * @return void
+     */
+    public function update (string $table,array $columns,array $data, int $id)
+    {
+        $pdo = $this->pdo;
+        $pattern_array = [];
 
-    //     for($i=0;$i<count($data);$i++) {
-    //         $data = [(string)$data[$i] => $data[$i]];
-    //     }
+        foreach ($data as $item) {
+            if ($item !== null) {
+                $item = '?';
+                array_push($pattern_array, $item);
+            }
+        }
 
-    //     array_push($data,['id'=>$id]);
+        array_push($data,['id'=>$id]);
 
-    //     $pattern = implode(",",$pattern_array);
+        $pattern = implode(",",$pattern_array);
 
-    //     $sql = "UPDATE $table SET $pattern WHERE id = :id";
+        $sql = "UPDATE $table SET $pattern WHERE id = :id";
 
-    //     $query = $pdo->prepare($sql);
-    //     $query->execute($data);
-    // }
+        $query = $pdo->prepare($sql);
+        $query->execute($data);
+    }
 
+    /**
+     * Функция для удаления записи в таблице по id.
+     *
+     * @param string $table
+     * @param integer $id
+     * @return void
+     */
     public function delete (string $table, int $id)
     {
         $pdo = $this->pdo;
