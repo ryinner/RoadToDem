@@ -1,4 +1,5 @@
 var filter;
+// Получение всех заявок с фильтрацией
 function getOrders () {
     $.ajax({
         type: "POST",

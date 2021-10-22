@@ -49,6 +49,11 @@ class OrdersController implements ControllerDataInterface
         echo json_encode($orders);
     }
 
+    /**
+     * Функция для получения заявок пользователя, а также филтра пользователя.
+     *
+     * @return $ЗаявкиПользователя
+     */
     public function getForUser()
     {
         $userController = new UsersController;
@@ -130,6 +135,11 @@ class OrdersController implements ControllerDataInterface
         }
     }
 
+    /**
+     * Функция для удаления заявки
+     *
+     * @return void
+     */
     public function delete()
     {
         $post = $_POST;

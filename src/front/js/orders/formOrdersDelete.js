@@ -1,3 +1,4 @@
+// Удаление заявки
 $(document).on('click','.delete',function() {
     console.log('hi');
     // Получение данных и отправка ajax на удаление

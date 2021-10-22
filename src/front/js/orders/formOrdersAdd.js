@@ -1,3 +1,4 @@
+// Добавление заявки
 $('#create').on('click',function(event) {
     event.preventDefault();
 
