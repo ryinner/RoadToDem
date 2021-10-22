@@ -1,10 +1,12 @@
+var filter;
 function getOrders () {
     $.ajax({
         type: "POST",
         url: "/orders.php",
-        data: {action:'getForUser'},
+        data: {action:'getForUser', filter:filter},
         success: function (data) {
             $('#orders').empty();
+            console.log(data);
             data = JSON.parse(data);
             for(i=0;i<data.length;i++) {
                 console.log(data[i]);

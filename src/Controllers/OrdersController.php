@@ -56,7 +56,12 @@ class OrdersController implements ControllerDataInterface
         $id = $userController->getId();
 
         $db = new DataBaseController;
-        $sql = "SELECT  o.id, o.adress, o.description, o.max_price, o.data, o.status, o.photo_user, o.photo_admin, o.end_price, c.name FROM $this->table o INNER JOIN category c ON o.category_id = c.id WHERE user_id = $id";
+        if (empty($_POST['filter'])) {
+            $sql = "SELECT  o.id, o.adress, o.description, o.max_price, o.data, o.status, o.photo_user, o.photo_admin, o.end_price, c.name FROM $this->table o INNER JOIN category c ON o.category_id = c.id WHERE o.user_id = $id";
+        } else {
+            $filter = $_POST['filter'];
+            $sql = "SELECT  o.id, o.adress, o.description, o.max_price, o.data, o.status, o.photo_user, o.photo_admin, o.end_price, c.name FROM $this->table o INNER JOIN category c ON o.category_id = c.id WHERE o.user_id = $id AND o.status = '$filter'";
+        }
         
         $query = $db->pdo->query($sql);
         $query = $query->fetchAll();
