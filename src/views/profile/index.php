@@ -23,8 +23,16 @@
     <a href="javascript;;" class="filters" value="Отремонтировано">Отремонтированые</a>
 </div>
 <!-- Фильтр конец -->
+<!-- Заявки начало -->
 <div class="row" id="orders">
 
+</div>
+<!-- Заявки конец -->
+<div class="modal off">
+    <div class="modal__window">
+        <button id="yes">Удалить</button>
+        <button id="no">Не удалять</button>
+    </div>
 </div>
 <script src="/src/front/js/orders/formOrdersGetForUser.js"></script>
 <script src="/src/front/js/category/formCategoryGet.js"></script>

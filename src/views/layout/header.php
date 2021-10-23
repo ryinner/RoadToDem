@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/src/front/css/inputs.css">
     <link rel="stylesheet" href="/src/front/css/toast.css">
     <link rel="stylesheet" href="/src/front/css/orders.css">
+    <link rel="stylesheet" href="/src/front/css/modal.css">
     <script src="/src/front/js/jquery-3.4.1.min.js"></script>
     <title>МастерОк</title>
 </head>

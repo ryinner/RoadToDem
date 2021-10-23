@@ -74,6 +74,11 @@ class OrdersController implements ControllerDataInterface
         echo json_encode($query);
     }
 
+    public function count()
+    {
+        
+    }
+
     /**
      * Функция для добавления новых заявок с всей валидацией.
      * Проверка на расширения и размер файла через внутрение
