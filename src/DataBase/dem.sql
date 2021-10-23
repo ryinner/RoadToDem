@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 19 2021 г., 20:52
+-- Время создания: Окт 23 2021 г., 08:15
 -- Версия сервера: 8.0.24
 -- Версия PHP: 8.0.8
 
@@ -37,7 +37,8 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
-(1, 'Дом');
+(1, 'Дом'),
+(3, 'Эльдар');
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `adress`, `description`, `max_price`, `data`, `status`, `photo_user`, `photo_admin`, `end_price`, `category_id`, `user_id`) VALUES
-(1, 'FFF', 'ААА', 123, '19-10-21', 'Новая', 'src/front/img/2006610311hBVrCYrw1Y.jpg', NULL, NULL, 1, 4);
+(2, 'Россияская Россия 24', 'Тут пожалуйста поставьте одного Илью, потом Эльдара, а потом еще и Тимура', 109, '20-10-21', 'Новая', 'src/front/img/19071275583456.png', NULL, NULL, 1, 4),
+(3, 'Россияская Россия 24', 'Тут пожалуйста поставьте одного Илью, потом Эльдара, а потом еще и Тимура', 109, '20-10-21', 'Новая', 'src/front/img/1173607193456.png', NULL, NULL, 1, 4),
+(4, 'Россияская Россия 24', 'Тут пожалуйста поставьте одного Илью, потом Эльдара, а потом еще и Тимура', 109, '20-10-21', 'Новая', 'src/front/img/3248383003456.png', NULL, NULL, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -123,13 +126,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
