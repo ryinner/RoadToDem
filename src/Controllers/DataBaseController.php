@@ -99,18 +99,18 @@ class DataBaseController
         $pdo = $this->pdo;
         $pattern_array = [];
 
-        foreach ($data as $item) {
+        foreach ($columns as $item) {
             if ($item !== null) {
-                $item = '?';
+                $item = $item .'='. '?';
                 array_push($pattern_array, $item);
             }
         }
 
-        array_push($data,['id'=>$id]);
+        array_push($data,$id);
 
         $pattern = implode(",",$pattern_array);
 
-        $sql = "UPDATE $table SET $pattern WHERE id = :id";
+        $sql = "UPDATE $table SET $pattern WHERE id = ?";
 
         $query = $pdo->prepare($sql);
         $query->execute($data);

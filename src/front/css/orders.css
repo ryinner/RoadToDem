@@ -10,6 +10,24 @@
     margin-bottom: 6px;
 }
 
-.order__img {
-    width: 100%;
+@media ( max-width: 1200px) {
+    .order {
+        width: 45%;
+    }
+
+    .img {
+        max-height: 200px;
+    }
+
+    nav {
+        width: 60%;
+    }
+
+    a {
+        font-size: 2em;
+    }
+
+    #ads {
+        display: none;
+    }
 }

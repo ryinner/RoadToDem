@@ -44,9 +44,37 @@ class OrdersController implements ControllerDataInterface
                     break;
             }
         }
+        echo '<h3>Новые</h3><div class="row">';
+        foreach ($newOrders as $item) {
+            echo '<div class="order" id="'.$item['id'].'">
+            <h3>Дата: '.$item['data'].'</h3>
+            <p class="text__center">Адрес: '.$item['adress'].'</p>
+            <p class="text__center">Описание: '. $item['description'] .'</p>
+            <button value="'.$item['id'].'" id="working">Ремонтируется</option>
+            <button value="'.$item['id'].'" id="ready">Отремонтировано</option>
+            </div>';
+        }  
 
-        $orders = ['new'=>$newOrders,'working'=>$workingOrders,'ready'=> $readyOrders];
-        echo json_encode($orders);
+        echo '</div><hr><h3>Ремонтируются</h3><div class="row">';
+        foreach ($workingOrders as $item) {
+            echo '<div class="order" id="'.$item['id'].'">
+            <h3>Дата: '.$item['data'].'</h3>
+            <p class="text__center">Адрес: '.$item['adress'].'</p>
+            <p class="text__center">Описание: '. $item['description'] .'</p>
+            </div>';
+        }
+
+        echo '</div><hr><h3>Отремонтированые</h3><div class="row">';
+
+        foreach ($readyOrders as $item) {
+            echo '<div class="order" id="'.$item['id'].'">
+            <h3>Дата: '.$item['data'].'</h3>
+            <p class="text__center">Адрес: '.$item['adress'].'</p>
+            <p class="text__center">Описание: '. $item['description'] .'</p>
+            </div>';
+        }
+
+        echo '</div>';
     }
 
     /**
@@ -74,9 +102,20 @@ class OrdersController implements ControllerDataInterface
         echo json_encode($query);
     }
 
+    /**
+     * Функция счетчика, выбирает все записи с статусом отремонтировано.
+     * 
+     * @return $query
+     */
     public function count()
     {
-        
+        $db = new DataBaseController;
+        $sql = "SELECT COUNT(*) as count FROM orders WHERE status = 'Отремонтировано'";
+
+        $query = $db->pdo->query($sql);
+        $query = $query->fetch();
+
+        echo json_encode($query);
     }
 
     /**
@@ -140,6 +179,23 @@ class OrdersController implements ControllerDataInterface
         }
     }
 
+    public function index()
+    {
+        $db = new DataBaseController;
+        $sql = 'SELECT o.id,o.data, o.adress, c.name, o.photo_user, o.photo_admin FROM orders o INNER JOIN category c ON o.category_id = c.id WHERE status = "Отремонтировано" ORDER BY data LIMIT 4';
+        $query = $db->pdo->query($sql);
+        $query = $query->fetchALL();
+        foreach ($query as $item) {
+            echo '<div class="order">
+            <h3>Дата: '.$item['data'].'</h3>
+            <img class="img up" id ="'.$item['id'].'" src="'.$item['photo_user'].'">
+            <img class="img down off" id ="'.$item['id'].'admin" src="'.$item['photo_admin'].'">
+            <p class="text__center">Адрес: '.$item['adress'].'</p>
+            <p class="text__center">Описание: '. $item['name'] .'</p>
+            </div>';
+        }
+    }
+
     /**
      * Функция для удаления заявки
      *
@@ -155,8 +211,65 @@ class OrdersController implements ControllerDataInterface
         $db->delete($this->table,$id);
     }
 
+
+    
     public function update()
     {
+        $post = $_POST;
+        $files= $_FILES;
+        $db = new DataBaseController;
+
+        $id = $post['id'];
+        $status = $post['status'];
         
+        $newPrice = $post['newPrice'];
+
+        $tmp         = $files['img']['tmp_name'];
+        $img         = $files['img']['name'];
+        $imgSize     = $files['img']['size'];
+        $imgExtension= pathinfo($img, PATHINFO_EXTENSION);
+        $allowedExtension = ['jpg', 'jpeg', 'png', 'bmp'];
+        $allowedSize = 2097152;
+        
+        if (!empty($newPrice)) {
+            $db->update($this->table,['status','end_price'],[$status,$newPrice],$id);
+        }
+
+        if (!empty($img)) {
+            if ($imgSize < $allowedSize) {
+                if (in_array($imgExtension, $allowedExtension)) {
+                    $path = 'src/front/img/';
+                    $rand = rand();
+                    $imgEndPath = $path.$rand.$img;
+                    if (move_uploaded_file($tmp, $imgEndPath)) {
+                        $db->update($this->table,['status','photo_admin'],[$status,$imgEndPath],$id);
+                        echo json_encode([
+                            'success' => "sucess"
+                        ]);
+                    } else {
+                        echo json_encode([
+                            'success' => "error",
+                            'message' => "Ошибка загрузки на сервер"
+                        ]);
+                    }
+                } else {
+                    echo json_encode([
+                        'success' => "error",
+                        'message' => "Не jpg, jpeg, png, bmp"
+                    ]);
+                }
+            } else {
+                echo json_encode([
+                    'success' => "error",
+                    'message' => "Файл-то слишком большой"
+                ]);
+            }
+        } else {
+            echo json_encode([
+                'success' => "error",
+                'message' => "А где картиночка?"
+            ]);
+        }
+  
     }
 }

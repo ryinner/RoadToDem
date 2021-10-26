@@ -52,7 +52,7 @@ CREATE TABLE `orders` (
   `description` text NOT NULL,
   `max_price` int NOT NULL,
   `data` text NOT NULL,
-  `status` varchar(11) DEFAULT 'Новая',
+  `status` varchar(255) DEFAULT 'Новая',
   `photo_user` text NOT NULL,
   `photo_admin` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `end_price` int DEFAULT NULL,

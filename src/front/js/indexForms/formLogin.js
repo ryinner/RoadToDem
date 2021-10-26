@@ -51,10 +51,10 @@ $('#loginButton').on('click',function(){
     // Вывод с сервера, если сервер возвращает error, то выходит сообщение об ошибке, иначе об успехе регистрации
 
     function success(data) {
-        data = JSON.parse(data);
         console.log(data);
+        data = JSON.parse(data);
         if (data.success == "true") {
-            document.location.href = 'http://masterok';
+            document.location.href = 'http://localhost';
         } else {
             login.addClass('invalid');
             password.addClass('invalid');
